@@ -3,7 +3,7 @@ import type { BaseGeneratedListTypes, JSONValue, GqlNames, MaybePromise } from '
 import type { ListHooks } from './schema/hooks';
 import { SessionStrategy } from './session';
 import { SchemaConfig } from './schema';
-import { IncomingMessage, ServerResponse } from 'http';
+import { IncomingMessage } from 'http';
 import { GraphQLSchema, ExecutionResult, DocumentNode } from 'graphql';
 import { BaseListMeta, SerializedAdminMeta } from './admin-meta';
 export * from './schema';
@@ -137,21 +137,14 @@ export type FieldDefaultValue<T> =
 
 export type KeystoneSystem = {
   keystone: BaseKeystone;
-  config: KeystoneConfig;
+  sessionStrategy: any;
   adminMeta: SerializedAdminMeta;
+  views: string[];
   graphQLSchema: GraphQLSchema;
   createContext: (args: {
     sessionContext?: SessionContext;
     skipAccessControl?: boolean;
   }) => KeystoneContext;
-  sessionImplementation?: {
-    createContext(
-      req: IncomingMessage,
-      res: ServerResponse,
-      system: KeystoneSystem
-    ): Promise<SessionContext>;
-  };
-  views: string[];
 };
 
 export type AccessControlContext = {
