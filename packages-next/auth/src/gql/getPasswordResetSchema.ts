@@ -61,7 +61,11 @@ export function getPasswordResetSchema({
     `,
     resolvers: {
       Mutation: {
-        async [gqlNames.sendItemPasswordResetLink](root, args, context) {
+        async [gqlNames.sendItemPasswordResetLink](
+          root: any,
+          args: { [_identityField: string]: string },
+          context
+        ) {
           const list = context.keystone.lists[listKey];
           const itemAPI = context.lists[listKey];
           const tokenType = 'passwordReset';
@@ -95,7 +99,11 @@ export function getPasswordResetSchema({
           }
           return null;
         },
-        async [gqlNames.redeemItemPasswordResetToken](root, args, context) {
+        async [gqlNames.redeemItemPasswordResetToken](
+          root: any,
+          args: { _token: string; [_identityField: string]: string },
+          context
+        ) {
           const list = context.keystone.lists[listKey];
           const itemAPI = context.lists[listKey];
           const tokenType = 'passwordReset';
@@ -137,7 +145,11 @@ export function getPasswordResetSchema({
         },
       },
       Query: {
-        async [gqlNames.validateItemPasswordResetToken](root, args, context) {
+        async [gqlNames.validateItemPasswordResetToken](
+          root: any,
+          args: { _token: string; [_identityField: string]: string },
+          context
+        ) {
           const list = context.keystone.lists[listKey];
           const itemAPI = context.lists[listKey];
           const tokenType = 'passwordReset';

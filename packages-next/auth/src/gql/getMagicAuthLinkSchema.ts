@@ -58,7 +58,11 @@ export function getMagicAuthLinkSchema({
     `,
     resolvers: {
       Mutation: {
-        async [gqlNames.sendItemMagicAuthLink](root, args, context) {
+        async [gqlNames.sendItemMagicAuthLink](
+          root: any,
+          args: Record<string, string>,
+          context
+        ) {
           const list = context.keystone.lists[listKey];
           const itemAPI = context.lists[listKey];
           const tokenType = 'magicAuth';
@@ -94,7 +98,11 @@ export function getMagicAuthLinkSchema({
           }
           return null;
         },
-        async [gqlNames.redeemItemMagicAuthToken](root, args, context) {
+        async [gqlNames.redeemItemMagicAuthToken](
+          root: any,
+          args: { _token: string; [_identityField: string]: string },
+          context
+        ) {
           if (!context.startSession) {
             throw new Error('No session implementation available on context');
           }

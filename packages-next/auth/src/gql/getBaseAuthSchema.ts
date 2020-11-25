@@ -48,7 +48,11 @@ export function getBaseAuthSchema({
     `,
     resolvers: {
       Mutation: {
-        async [gqlNames.authenticateItemWithPassword](root, args, context) {
+        async [gqlNames.authenticateItemWithPassword](
+          root: any,
+          args: { [_secretField: string]: string },
+          context
+        ) {
           if (!context.startSession) {
             throw new Error('No session implementation available on context');
           }
@@ -82,8 +86,8 @@ export function getBaseAuthSchema({
         },
       },
       Query: {
-        async authenticatedItem(root, args, { session, lists }) {
-          if (typeof session?.itemId === 'string' && typeof session.listKey === 'string') {
+        async authenticatedItem(root: any, args: {}, { session, lists }) {
+          if (session) {
             const item = await lists[session.listKey].findOne({ where: { id: session.itemId } });
             return item || null;
           }
@@ -91,7 +95,7 @@ export function getBaseAuthSchema({
         },
       },
       AuthenticatedItem: {
-        __resolveType(rootVal, { session }) {
+        __resolveType(rootVal: any, { session }) {
           return session?.listKey;
         },
       },
