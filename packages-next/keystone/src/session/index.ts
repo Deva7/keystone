@@ -223,13 +223,10 @@ export function implementSession<T>(sessionStrategy: SessionStrategy<T>) {
         await sessionStrategy.connect?.();
         isConnected = true;
       }
-      const session = await sessionStrategy.get({ req, system });
-      const startSession = sessionStrategy.start;
-      const endSession = sessionStrategy.end;
       return {
-        session,
-        startSession: startSession ? (data: T) => startSession({ res, data, system }) : undefined,
-        endSession: endSession ? () => endSession({ req, res, system }) : undefined,
+        session: await sessionStrategy.get({ req, system }),
+        startSession: (data: T) => sessionStrategy.start({ res, data, system }),
+        endSession: () => sessionStrategy.end({ req, res, system }),
       };
     },
   };

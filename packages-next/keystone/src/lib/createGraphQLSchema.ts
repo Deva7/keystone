@@ -1,12 +1,7 @@
 import { GraphQLObjectType } from 'graphql';
 import { mergeSchemas } from '@graphql-tools/merge';
 import { mapSchema } from '@graphql-tools/utils';
-import type {
-  KeystoneConfig,
-  SessionStrategy,
-  KeystoneContext,
-  BaseKeystone,
-} from '@keystone-next/types';
+import type { KeystoneConfig, KeystoneContext, BaseKeystone } from '@keystone-next/types';
 import { adminMetaSchemaExtension } from '@keystone-next/admin-ui/templates';
 
 import { gql } from '../schema';
@@ -14,9 +9,7 @@ import { gql } from '../schema';
 export function createGraphQLSchema(
   config: KeystoneConfig,
   keystone: BaseKeystone,
-  adminMeta: any,
-  sessionStrategy?: SessionStrategy<unknown>,
-  sessionImplementation?: any
+  adminMeta: any
 ) {
   // @ts-ignore
   let graphQLSchema = keystone.createApolloServer({
@@ -47,7 +40,7 @@ export function createGraphQLSchema(
     graphQLSchema = config.extendGraphqlSchema(graphQLSchema, keystone);
   }
 
-  if (sessionStrategy?.end) {
+  if (config.session) {
     graphQLSchema = mergeSchemas({
       schemas: [graphQLSchema],
       typeDefs: gql`
@@ -72,7 +65,7 @@ export function createGraphQLSchema(
     adminMeta,
     graphQLSchema,
     isAccessAllowed:
-      sessionImplementation === undefined
+      config.session === undefined
         ? undefined
         : config.ui?.isAccessAllowed ?? (({ session }) => session !== undefined),
     config,
