@@ -1,5 +1,15 @@
 # @keystone-next/fields-document
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`cffa011f7`](https://github.com/keystonejs/keystone/commit/cffa011f79a49e2f5c9165f82e6dff09a88a5b6d), [`57092b7c1`](https://github.com/keystonejs/keystone/commit/57092b7c13845fffd1f3767bb609d203afbc2776), [`3f3c65ab2`](https://github.com/keystonejs/keystone/commit/3f3c65ab2d206ef1c72f17259e73fb24a79f0a9b), [`1c12b8204`](https://github.com/keystonejs/keystone/commit/1c12b8204f8238997ddaf7337c44cf26ebea9ba4)]:
+  - @keystone-next/admin-ui@3.1.3
+  - @keystone-next/types@6.0.0
+  - @keystone-next/admin-ui-utils@2.0.2
+  - @keystone-next/fields@3.2.2
+
 ## 0.0.2
 
 ### Patch Changes

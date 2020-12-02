@@ -1,5 +1,17 @@
 # @keystone-next/types
 
+## 6.0.0
+
+### Major Changes
+
+- [`57092b7c1`](https://github.com/keystonejs/keystone/commit/57092b7c13845fffd1f3767bb609d203afbc2776) [#4465](https://github.com/keystonejs/keystone/pull/4465) Thanks [@timleslie](https://github.com/timleslie)! - Updated `SessionStrategy.start` and `SessionStrategy.end` to be required attributes.
+
+* [`3f3c65ab2`](https://github.com/keystonejs/keystone/commit/3f3c65ab2d206ef1c72f17259e73fb24a79f0a9b) [#4458](https://github.com/keystonejs/keystone/pull/4458) Thanks [@timleslie](https://github.com/timleslie)! - Removed `createContextFromRequest` and `createSessionContext` from `KeystoneSystem` and replaced them with `sessionImplementation`, which provides the same core functionality.
+
+### Patch Changes
+
+- [`1c12b8204`](https://github.com/keystonejs/keystone/commit/1c12b8204f8238997ddaf7337c44cf26ebea9ba4) [#4424](https://github.com/keystonejs/keystone/pull/4424) Thanks [@timleslie](https://github.com/timleslie)! - Added more specific types for `listQuery`, `listQueryMeta`, and the items API.
+
 ## 5.0.0
 
 ### Major Changes
